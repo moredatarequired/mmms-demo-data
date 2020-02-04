@@ -62,7 +62,7 @@ def random_date_range(start=None, end=None):
 
 
 # Step 1: create N companies.
-num_companies = 100
+num_companies = 300
 companies = Table()
 
 

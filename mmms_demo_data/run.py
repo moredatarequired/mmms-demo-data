@@ -12,5 +12,5 @@ def create_subtable(n):
 
 start = datetime.now()
 pool = Pool()
-pool.map(create_subtable, [10000] * 16)
+pool.map(create_subtable, [1000] * 16)
 print(f"finished overall in {datetime.now() - start}")

@@ -208,6 +208,17 @@ version = "2.4.6"
 
 [[package]]
 category = "dev"
+description = "Python module to run and analyze benchmarks"
+name = "pyperf"
+optional = false
+python-versions = "*"
+version = "1.7.0"
+
+[package.dependencies]
+six = "*"
+
+[[package]]
+category = "dev"
 description = "pytest: simple powerful testing with Python"
 name = "pytest"
 optional = false
@@ -296,7 +307,7 @@ python-versions = "*"
 version = "1.11.2"
 
 [metadata]
-content-hash = "5df255e0a2fdcd7d4d8ba315e05e13543da34e5731406f927c1bd6e9c8b1fd3c"
+content-hash = "d68f63469966288f2b281b9e777101846edd0a71404b8275d98fa4515514c849"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -448,6 +459,10 @@ pymongo = [
 pyparsing = [
     {file = "pyparsing-2.4.6-py2.py3-none-any.whl", hash = "sha256:c342dccb5250c08d45fd6f8b4a559613ca603b57498511740e65cd11a2e7dcec"},
     {file = "pyparsing-2.4.6.tar.gz", hash = "sha256:4c830582a84fb022400b85429791bc551f1f4871c33f23e44f353119e92f969f"},
+]
+pyperf = [
+    {file = "pyperf-1.7.0-py2.py3-none-any.whl", hash = "sha256:d512f79868b45ebe9b5dca60a0b0e89c29609de49303a93dbedc02f6316e6c05"},
+    {file = "pyperf-1.7.0.tar.gz", hash = "sha256:0d214aa65e085d3e4108a36152cb12f7cd0f4e7fda93b5134b43a9687c975786"},
 ]
 pytest = [
     {file = "pytest-5.3.5-py3-none-any.whl", hash = "sha256:ff615c761e25eb25df19edddc0b970302d2a9091fbce0e7213298d85fb61fef6"},

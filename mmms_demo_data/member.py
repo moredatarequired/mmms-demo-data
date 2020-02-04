@@ -1,11 +1,10 @@
-from faker import Faker
-
+from misc import to_datetime
 from random_access_table import RandomAccessTable
 
 
 class MemberTable(RandomAccessTable):
-    def __init__(self, size=0):
-        self.fake = Faker()
+    def __init__(self, fake, size=0):
+        self.fake = fake
         super().__init__(key_gen=self.fake.isbn10)
 
         for _ in range(size):
@@ -18,6 +17,7 @@ class MemberTable(RandomAccessTable):
         member = self.fake.profile(
             ["name", "ssn", "birthdate", "sex", "mail", "address"]
         )
+        member["birthdate"] = to_datetime(member["birthdate"])
         member["member_id"] = member_id
         member["policies"] = []
         self[member_id] = member

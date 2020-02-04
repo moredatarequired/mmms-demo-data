@@ -1,24 +1,22 @@
 import random
 
-from faker import Faker
-
 from misc import random_date_range
 from random_access_table import RandomAccessTable
 
 
 class MemberContractTable(RandomAccessTable):
-    def __init__(self, members, group_contracts, avg_num_beneficiaries=1, size=0):
-        self.fake = Faker()
+    def __init__(self, fake, members, group_contracts, avg_beneficiaries=1, size=0):
+        self.fake = fake
         super().__init__(key_gen=self.fake.isbn13)
         self.members = members
         self.group_contracts = group_contracts
-        self.avg_num_beneficiaries = avg_num_beneficiaries
+        self.avg_beneficiaries = avg_beneficiaries
 
         for _ in range(size):
             self.new_policy()
 
     def num_beneficiaries(self):
-        return int(random.expovariate(self.avg_num_beneficiaries + 0.5))
+        return int(random.expovariate(self.avg_beneficiaries + 0.5))
 
     def new_policy(self, group_contract=None, subscriber=None, beneficiaries=None):
         member_contract_id = self.random_unused_key()

@@ -1,12 +1,10 @@
-from faker import Faker
-
 from misc import random_date_range
 from random_access_table import RandomAccessTable
 
 
 class GroupContractTable(RandomAccessTable):
-    def __init__(self, company_table, size=0):
-        self.fake = Faker()
+    def __init__(self, fake, company_table, size=0):
+        self.fake = fake
         super().__init__(key_gen=self.fake.msisdn)
         self.companies = company_table
 

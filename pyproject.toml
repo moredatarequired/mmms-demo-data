@@ -14,6 +14,7 @@ pytest = "^5.2"
 black = "^19.10b0"
 pylint = "^2.4.4"
 pyperf = "^1.7.0"
+memprof = "^0.3.6"
 
 [build-system]
 requires = ["poetry>=0.12"]

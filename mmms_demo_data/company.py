@@ -1,11 +1,9 @@
-from faker import Faker
-
 from random_access_table import RandomAccessTable
 
 
 class CompanyTable(RandomAccessTable):
-    def __init__(self, size=0):
-        self.fake = Faker()
+    def __init__(self, fake, size=0):
+        self.fake = fake
         super().__init__(key_gen=self.fake.ein)
 
         for _ in range(size):

@@ -39,8 +39,8 @@ class RandomAccessTable:
     def values(self):
         return self.items
 
-    def random(self, n=1, with_replacement=False):
-        if n == 1:
+    def random(self, n=None, with_replacement=False):
+        if n is None:
             return random.choice(self.items)
         if with_replacement:
             return random.choices(self.items, k=n)

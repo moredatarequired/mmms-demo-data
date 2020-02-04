@@ -21,8 +21,7 @@ class MemberContractTable(RandomAccessTable):
         return int(random.expovariate(self.avg_num_beneficiaries + 0.5))
 
     def new_policy(self, group_contract=None, subscriber=None, beneficiaries=None):
-        if member_contract_id is None:
-            member_contract_id = self.random_unused_key()
+        member_contract_id = self.random_unused_key()
 
         if group_contract is None:
             group_contract = self.group_contracts.random()

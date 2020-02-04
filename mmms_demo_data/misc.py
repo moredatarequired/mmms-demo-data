@@ -1,4 +1,10 @@
+import math
+import random
 from datetime import date, timedelta
+
+
+def random_gamma_ceil(avg):
+    return math.ceil(random.gammavariate(avg, 1))
 
 
 def random_date_range(fake, start=None, end=None):

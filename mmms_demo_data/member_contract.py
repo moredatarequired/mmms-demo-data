@@ -23,6 +23,7 @@ class MemberContractTable(RandomAccessTable):
 
         if group_contract is None:
             group_contract = self.group_contracts.random()
+        group_contract["policies"].append(member_contract_id)
 
         start, end = group_contract["start_date"], group_contract["end_date"]
         start_date, end_date = random_date_range(self.fake, start, end)

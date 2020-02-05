@@ -34,14 +34,15 @@ class MemberContractTable(RandomAccessTable):
 
         if beneficiaries is None:
             beneficiaries = self.members.random(n=self.num_beneficiaries())
+        beneficiary_ids = [b["_id"] for b in beneficiaries]
         for b in beneficiaries:
-            b["policies"].append(member_contract_id)
+            b["beneficiary_of"].append(member_contract_id)
 
         policy = {
             "member_contract_id": member_contract_id,
             "group_contract_id": group_contract["_id"],
             "subscriber": subscriber["_id"],
-            "beneficiaries": [b["_id"] for b in beneficiaries],
+            "beneficiaries": beneficiary_ids,
             "start_date": start_date,
             "end_date": end_date,
         }

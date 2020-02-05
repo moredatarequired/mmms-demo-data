@@ -19,5 +19,6 @@ class MemberTable(RandomAccessTable):
         member["birthdate"] = to_datetime(member["birthdate"])
         member["_id"] = member_id
         member["policies"] = []
+        member["beneficiary_of"] = []
         self[member_id] = member
         return member

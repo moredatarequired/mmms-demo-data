@@ -8,6 +8,9 @@ authors = ["Hugh Wimberly <hugh.wimberly@gmail.com>"]
 python = "^3.8"
 faker = "^4.0.0"
 pymongo = "^3.10.1"
+python-dotenv = "^0.10.5"
+dnspython = "^1.16.0"
+click = "^7.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

@@ -1,14 +1,15 @@
 from datetime import datetime
 from multiprocessing import Pool
 
+import click
 from faker import Faker
-from pymongo import MongoClient
 
 from company import CompanyTable
+from connect import connect_to_mongodb
 from group_contract import GroupContractTable
 from member import MemberTable
 from member_contract import MemberContractTable
-from misc import random_gamma_ceil
+from misc import random_gamma_ceil, random_seed
 
 
 class ContractSet:
@@ -31,7 +32,7 @@ class ContractSet:
                 self.policies.new_policy(subscriber=m)
 
     def write_to_mongo(self):
-        client = MongoClient()
+        client = connect_to_mongodb()
         db = client.insurance_demo
         db.companies.insert_many(self.companies.values())
         db.members.insert_many(self.members.values())
@@ -39,18 +40,25 @@ class ContractSet:
         db.policies.insert_many(self.policies.values())
 
 
-def create_batch(index):
+def create_batch(num_members):
     fake = Faker()
-    fake.seed_instance(index)
+    fake.seed_instance(random_seed())
     start = datetime.now()
-    cs = ContractSet(fake, num_companies=30, num_members=10000)
+    cs = ContractSet(fake, num_members // 300, num_members)
     generated = datetime.now()
-    print(f"{index} created contracts in {generated - start}")
+    print(f"created contracts in {generated - start}")
     cs.write_to_mongo()
-    print(f"{index} wrote collection to mongo in {datetime.now() - generated}")
+    print(f"wrote collection to mongo in {datetime.now() - generated}")
 
 
-start = datetime.now()
-pool = Pool()
-pool.map(create_batch, range(16))
-print(f"finished overall in {datetime.now() - start}")
+@click.command()
+@click.option('--total_members', default=40000, help='Number of members to add.')
+@click.option('--batch_size', default=10000, help='Number of members to generate per batch.')
+def create_in_parallel(total_members, batch_size):
+    start = datetime.now()
+    pool = Pool()
+    pool.map(create_batch, [batch_size for _ in range(total_members // batch_size)])
+    print(f"finished overall in {datetime.now() - start}")
+
+if __name__ == '__main__':
+    create_in_parallel()

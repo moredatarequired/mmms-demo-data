@@ -28,5 +28,6 @@ def random_date_range(fake, start=None, end=None):
 
     return start_date, end_date
 
+
 def random_seed():
     return random.getrandbits(64)

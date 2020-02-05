@@ -11,5 +11,6 @@ def mongodb_connection_string():
     base = f"mongodb+srv://{user}:{password}@sandboxcluster0-yoosx.mongodb.net"
     return base + "/test?retryWrites=true&w=majority"
 
+
 def connect_to_mongodb():
     return MongoClient(mongodb_connection_string())

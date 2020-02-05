@@ -14,7 +14,12 @@ from misc import random_gamma_ceil, random_seed
 
 class ContractSet:
     def __init__(
-        self, fake, num_companies, num_members, groups_per_company=10, contracts_per_member=2
+        self,
+        fake,
+        num_companies,
+        num_members,
+        groups_per_company=10,
+        contracts_per_member=2,
     ):
         self.companies = CompanyTable(fake, num_companies)
         self.members = MemberTable(fake, num_members)
@@ -52,13 +57,16 @@ def create_batch(num_members):
 
 
 @click.command()
-@click.option('--total_members', default=40000, help='Number of members to add.')
-@click.option('--batch_size', default=10000, help='Number of members to generate per batch.')
+@click.option("--total_members", default=40000, help="Number of members to add.")
+@click.option(
+    "--batch_size", default=10000, help="Number of members to generate per batch."
+)
 def create_in_parallel(total_members, batch_size):
     start = datetime.now()
     pool = Pool()
     pool.map(create_batch, [batch_size for _ in range(total_members // batch_size)])
     print(f"finished overall in {datetime.now() - start}")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     create_in_parallel()

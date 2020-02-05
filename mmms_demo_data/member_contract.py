@@ -7,7 +7,7 @@ from random_access_table import RandomAccessTable
 class MemberContractTable(RandomAccessTable):
     def __init__(self, fake, members, group_contracts, avg_beneficiaries=1, size=0):
         self.fake = fake
-        super().__init__(key_gen=self.fake.isbn13)
+        super().__init__()
         self.members = members
         self.group_contracts = group_contracts
         self.avg_beneficiaries = avg_beneficiaries
@@ -39,9 +39,9 @@ class MemberContractTable(RandomAccessTable):
 
         policy = {
             "member_contract_id": member_contract_id,
-            "group_contract_id": group_contract["group_contract_id"],
-            "subscriber": subscriber["member_id"],
-            "beneficiaries": [b["member_id"] for b in beneficiaries],
+            "group_contract_id": group_contract["_id"],
+            "subscriber": subscriber["_id"],
+            "beneficiaries": [b["_id"] for b in beneficiaries],
             "start_date": start_date,
             "end_date": end_date,
         }
